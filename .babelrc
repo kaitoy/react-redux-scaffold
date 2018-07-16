@@ -1,0 +1,4 @@
+{
+  "presets": ["env", "react", "flow"],
+  "plugins": ["react-css-modules", "syntax-dynamic-import"]
+}

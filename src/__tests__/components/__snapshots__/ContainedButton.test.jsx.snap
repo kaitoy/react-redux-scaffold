@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components ContainedButton renders correctly 1`] = `
+<button
+  className="MuiButtonBase-root-25 MuiButton-root-1 MuiButton-contained-10 MuiButton-raised-13"
+  disabled={false}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  tabIndex="0"
+  type="button"
+>
+  <span
+    className="MuiButton-label-2"
+  >
+    ZUNDOKO
+  </span>
+  <span
+    className="MuiTouchRipple-root-28"
+  />
+</button>
+`;
