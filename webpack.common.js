@@ -41,31 +41,18 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: [path.resolve(__dirname, srcDir)],
+        enforce: 'pre',
+        loader: 'stylelint-custom-processor-loader',
+      },
+      {
+        test: /\.(js|jsx)$/,
+        include: [path.resolve(__dirname, srcDir)],
         loader: 'babel-loader',
       },
       {
-        test: /\.css$/,
-        include: [path.resolve(__dirname, srcDir)],
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              modules: true,
-              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
-            },
-          },
-          'postcss-loader',
-        ],
-      },
-      {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        include: [path.resolve(__dirname, 'node_modules/typeface-roboto')],
-        loader: 'url-loader',
-        options: {
-          limit: 100000,
-        },
+        include: [path.resolve(__dirname, 'node_modules')],
+        loader: 'file-loader',
       },
     ],
   },

@@ -65,6 +65,21 @@
     * yarn add -D babel-plugin-react-css-modules
     * .babelrc に plugins 追加。
     * webpack.config.js の css-loader に options を追加。
+* [styled-components](https://www.styled-components.com/)
+    * 2017年ころからCSS Modulesに代わって人気に。
+    * https://postd.cc/stop-using-css-in-javascript-for-web-development-fa/ でちょっとディスられている。
+    * SassやPostCSSなど既存のCSSエコシステムを切り捨てているのと、React限定なのが気になるところではある。
+    * `yarn remove autoprefixer babel-plugin-react-css-modules css-loader cssnano postcss-loader postcss-preset-env style-loader url-loader`
+    * `yarn add styled-components`
+    * `yarn add -D babel-plugin-styled-components`
+    * https://www.styled-components.com/docs/tooling#stylelint
+    * ` yarn add -D stylelint-processor-styled-components stylelint-config-styled-components`
+    * `yarn remove stylelint-config-prettier`
+    * stylelint.config.jsを修正。
+    * npmスクリプトに`"lint:css": "stylelint ./src/**/*.jsx ./src/**/*.js",`
+    * https://www.styled-components.com/docs/tooling#webpack
+    * `yarn add -D stylelint-custom-processor-loader`
+    * webpack.common.jsを修正。
 * [Material-UI](https://material-ui.com/)
     * yarn add @material-ui/core
     * Roboto Font
