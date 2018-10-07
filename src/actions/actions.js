@@ -33,6 +33,7 @@ export function zundokoFetchSucceeded(payload: Object, meta: Object): Action {
 export function zundokoFetchFailed(payload: Object): Action {
   return {
     type: ZUNDOKO_FETCH_FAILED,
+    error: true,
     payload,
   };
 }
