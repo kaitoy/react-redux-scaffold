@@ -1,11 +1,12 @@
 // @flow
 
-import { call, fork, put, take } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
+import type { Saga } from 'redux-saga';
 import { getZundoko } from '../services/apis';
 import { ZUNDOKO_BUTTON_CLICKED, ZUNDOKO_FETCH_SUCCEEDED } from '../actions/actionTypes';
 import { zundokoFetchSucceeded, zundokoFetchFailed, kiyoshied } from '../actions/actions';
 
-function* fetchZundoko() {
+function* fetchZundoko(): Saga<void> {
   try {
     const response = yield call(getZundoko);
     const payload = response.data;
@@ -16,15 +17,12 @@ function* fetchZundoko() {
   }
 }
 
-export function* watchZundokoButtonClicked(): Generator<any, void, Object> {
-  while (true) {
-    const action = yield take(ZUNDOKO_BUTTON_CLICKED);
-    yield fork(fetchZundoko, action);
-  }
+export function* watchZundokoButtonClicked(): Saga<void> {
+  yield takeEvery(ZUNDOKO_BUTTON_CLICKED, fetchZundoko);
 }
 
 let numZuns = 0;
-function* evaluateKiyoshi(action) {
+function* evaluateKiyoshi(action): Saga<void> {
   if (action.payload.zundoko === 'zun') {
     numZuns += 1;
     return;
@@ -37,9 +35,6 @@ function* evaluateKiyoshi(action) {
   }
 }
 
-export function* watchFetchZundokoSucceeded(): Generator<any, void, Object> {
-  while (true) {
-    const action = yield take(ZUNDOKO_FETCH_SUCCEEDED);
-    yield fork(evaluateKiyoshi, action);
-  }
+export function* watchFetchZundokoSucceeded(): Saga<void> {
+  yield takeEvery(ZUNDOKO_FETCH_SUCCEEDED, evaluateKiyoshi);
 }

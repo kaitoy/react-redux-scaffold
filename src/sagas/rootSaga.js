@@ -1,8 +1,10 @@
 // @flow
 
-import { fork, all } from 'redux-saga/effects';
+import { fork } from 'redux-saga/effects';
+import type { Saga } from 'redux-saga';
 import { watchZundokoButtonClicked, watchFetchZundokoSucceeded } from './zundoko';
 
-export default function* rootSaga(): Generator<any, void, void> {
-  yield all([fork(watchZundokoButtonClicked), fork(watchFetchZundokoSucceeded)]);
+export default function* rootSaga(): Saga<void> {
+  yield fork(watchFetchZundokoSucceeded);
+  yield fork(watchZundokoButtonClicked);
 }
