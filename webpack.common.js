@@ -21,7 +21,7 @@ This software is distributed under ${licenseName} license.
 ${copyright}`;
 
 module.exports = {
-  entry: ['babel-polyfill', `./${packageJson.main}`],
+  entry: [`./${packageJson.main}`],
   output: {
     path: path.resolve(__dirname, outputDir),
     filename: 'bundle.js',

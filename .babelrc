@@ -1,4 +1,13 @@
 {
-  "presets": ["env", "react"],
-  "plugins": ["styled-components", "syntax-dynamic-import"]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage"
+      }
+    ],
+    "@babel/preset-react",
+    "@babel/preset-flow"
+  ],
+  "plugins": ["styled-components", "@babel/plugin-syntax-dynamic-import"]
 }
