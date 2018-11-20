@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { routerMiddleware } from 'connected-react-router';
 import { logger } from 'redux-logger';
 import rootSaga from './sagas/rootSaga';
-import rootReducer from './reducers/rootReducer';
+import createRootReducer from './reducers/rootReducer';
 
 export interface Store {
   zundokos: string[];
@@ -25,7 +25,7 @@ export default function configureStore(initialState: Object = {}) {
   middlewares.push(sagaMiddleware);
 
   const store = createStore(
-    connectRouter(history)(rootReducer),
+    createRootReducer(history),
     initialState,
     applyMiddleware(...middlewares),
   );

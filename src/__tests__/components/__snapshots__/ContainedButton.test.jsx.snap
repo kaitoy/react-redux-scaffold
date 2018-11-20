@@ -2,7 +2,7 @@
 
 exports[`components ContainedButton renders correctly 1`] = `
 <button
-  className="MuiButtonBase-root-25 MuiButton-root-1 MuiButton-contained-10 MuiButton-raised-13"
+  className="MuiButtonBase-root-27 MuiButton-root-1 MuiButton-contained-12 MuiButton-raised-15"
   disabled={false}
   onBlur={[Function]}
   onClick={[Function]}
@@ -24,7 +24,7 @@ exports[`components ContainedButton renders correctly 1`] = `
     ZUNDOKO
   </span>
   <span
-    className="MuiTouchRipple-root-28"
+    className="MuiTouchRipple-root-30"
   />
 </button>
 `;
