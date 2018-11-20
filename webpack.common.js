@@ -3,6 +3,10 @@ const path = require('path');
 const webpack = require('webpack');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { CheckerPlugin } = require('awesome-typescript-loader');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const packageJson = require('./package.json');
 
 const srcDir = 'src';
@@ -29,7 +33,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         include: [path.resolve(__dirname, srcDir)],
         enforce: 'pre',
         loader: 'eslint-loader',
@@ -39,7 +43,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         include: [path.resolve(__dirname, srcDir)],
         enforce: 'pre',
         loader: 'stylelint-custom-processor-loader',
@@ -50,6 +54,11 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
+        test: /\.(ts|tsx)$/,
+        include: [path.resolve(__dirname, srcDir)],
+        loader: 'awesome-typescript-loader',
+      },
+      {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         include: [path.resolve(__dirname, 'node_modules')],
         loader: 'file-loader',
@@ -57,7 +66,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.ts', '.tsx', '.js', '.jsx'],
     modules: ['node_modules'],
   },
   plugins: [
@@ -67,5 +76,7 @@ module.exports = {
       entryOnly: true,
     }),
     new CleanWebpackPlugin([outputDir]),
+    new CheckerPlugin(),
+    new HardSourceWebpackPlugin(),
   ],
 };

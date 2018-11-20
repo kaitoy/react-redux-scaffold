@@ -1,5 +1,3 @@
-// @flow
-
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
@@ -7,6 +5,13 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { logger } from 'redux-logger';
 import rootSaga from './sagas/rootSaga';
 import rootReducer from './reducers/rootReducer';
+
+export interface Store {
+  zundokos: string[];
+  kiyoshi: {
+    open: boolean;
+  };
+}
 
 const sagaMiddleware = createSagaMiddleware();
 export const history = createBrowserHistory();

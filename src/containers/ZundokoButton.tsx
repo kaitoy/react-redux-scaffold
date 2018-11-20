@@ -1,5 +1,3 @@
-// @flow
-
 import { connect } from 'react-redux';
 import ContainedButton from '../components/ContainedButton';
 import { zundokoButtonClicked } from '../actions/actions';

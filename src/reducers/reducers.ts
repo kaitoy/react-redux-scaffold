@@ -1,9 +1,7 @@
-// @flow
-
 import { ZUNDOKO_FETCH_SUCCEEDED, KIYOSHIED } from '../actions/actionTypes';
-import type { Action } from '../actions/actions';
+import { Kiyoshied, ZundokoFetchSucceeded } from '../actions/actions';
 
-export function zundokos(state: Array<string> = [], action: Action): Array<string> {
+export function zundokos(state: string[] = [], action: ZundokoFetchSucceeded): Array<string> {
   switch (action.type) {
     case ZUNDOKO_FETCH_SUCCEEDED:
       if (typeof action.payload === 'undefined') {
@@ -17,7 +15,7 @@ export function zundokos(state: Array<string> = [], action: Action): Array<strin
 
 export function kiyoshi(
   state: { open: boolean } = { open: false },
-  action: Action,
+  action: Kiyoshied,
 ): { open: boolean } {
   switch (action.type) {
     case KIYOSHIED:

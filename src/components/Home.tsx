@@ -1,10 +1,7 @@
-// @flow
-
-import React from 'react';
-import type { Node } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = (): Node => (
+const Home: FunctionComponent = () => (
   <div>
     <ul>
       <li>

@@ -1,7 +1,4 @@
-// @flow
-
-import React from 'react';
-import type { Node } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import Home from './Home';
@@ -12,7 +9,7 @@ const Wrapper = styled.div`
   font-family: Roboto, Arial, Helvetica, sans-serif;
 `;
 
-const App = (): Node => (
+const App: FunctionComponent = () => (
   <Wrapper>
     <Route exact path="/" render={() => <Redirect to="/home" />} />
     <Route exact path="/home" component={Home} />
