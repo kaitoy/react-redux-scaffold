@@ -1,4 +1,4 @@
-import { injectGlobal } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 // https://stackoverflow.com/questions/36148639/webpack-not-able-to-import-images-using-express-and-angular2-in-typescript
 const roboto300 = require('../node_modules/typeface-roboto/files/roboto-latin-300.woff');
@@ -8,8 +8,7 @@ const roboto400Italic = require('../node_modules/typeface-roboto/files/roboto-la
 const roboto500 = require('../node_modules/typeface-roboto/files/roboto-latin-500.woff');
 const roboto500Italic = require('../node_modules/typeface-roboto/files/roboto-latin-500italic.woff');
 
-/* eslint no-unused-expressions: ["error", { "allowTaggedTemplates": true }] */
-injectGlobal`
+const Fonts = createGlobalStyle`
   /* roboto-300normal - latin */
   @font-face {
     font-family: 'Roboto';
@@ -82,3 +81,5 @@ injectGlobal`
       url('${roboto500Italic}') format('woff');
   }
 `;
+
+export default Fonts;

@@ -5,8 +5,6 @@ import { ConnectedRouter } from 'connected-react-router';
 import App from './components/App';
 import configureStore, { history } from './configureStore';
 
-import(/* webpackPrefetch: true */ './fonts');
-
 // const initialState = {
 //   kiyoshi: { open: false },
 //   zundokos: ['Zun', 'Zun'],
