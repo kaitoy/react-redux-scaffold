@@ -2,11 +2,7 @@ const path = require('path');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const webpack = require('webpack');
 // eslint-disable-next-line import/no-extraneous-dependencies
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { CheckerPlugin } = require('awesome-typescript-loader');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const packageJson = require('./package.json');
 
 const srcDir = 'src';
@@ -24,7 +20,7 @@ ${packageJson.homepage}
 This software is distributed under ${licenseName} license.
 ${copyright}`;
 
-module.exports = {
+const body = {
   entry: [`./${packageJson.main}`],
   output: {
     path: path.resolve(__dirname, outputDir),
@@ -75,8 +71,11 @@ module.exports = {
       raw: false,
       entryOnly: true,
     }),
-    new CleanWebpackPlugin([outputDir]),
     new CheckerPlugin(),
-    new HardSourceWebpackPlugin(),
   ],
+};
+
+module.exports = {
+  outputDir,
+  body,
 };

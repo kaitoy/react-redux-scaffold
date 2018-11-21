@@ -1,9 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const webpackMerge = require('webpack-merge');
 const webpackCommon = require('./webpack.common.js');
 
-module.exports = webpackMerge(webpackCommon, {
+module.exports = webpackMerge(webpackCommon.body, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
@@ -16,4 +18,5 @@ module.exports = webpackMerge(webpackCommon, {
     publicPath: 'http://localhost:3000/',
     historyApiFallback: true,
   },
+  plugins: [new HardSourceWebpackPlugin()],
 });
