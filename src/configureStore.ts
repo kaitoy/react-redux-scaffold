@@ -16,7 +16,7 @@ export interface Store {
 const sagaMiddleware = createSagaMiddleware();
 export const history = createBrowserHistory();
 
-export default function configureStore(initialState: Object = {}) {
+export default function configureStore(initialState: Partial<Store> = {}) {
   const middlewares = [];
   if (process.env.NODE_ENV === `development`) {
     middlewares.push(logger);
