@@ -1,4 +1,4 @@
-import { call, put, takeEvery, CallEffect, PutEffect, ForkEffect } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import { getZundoko } from '../services/apis';
 import { ZUNDOKO_BUTTON_CLICKED, ZUNDOKO_FETCH_SUCCEEDED } from '../actions/actionTypes';
 import {
@@ -6,13 +6,9 @@ import {
   zundokoFetchFailed,
   kiyoshied,
   ZundokoFetchSucceeded,
-  ZundokoFetchFailed,
-  Kiyoshied,
 } from '../actions/actions';
 
-function* fetchZundoko(): Iterable<
-  CallEffect | PutEffect<ZundokoFetchSucceeded | ZundokoFetchFailed>
-> {
+function* fetchZundoko() {
   try {
     const response = yield call(getZundoko);
     const payload = response.data;
@@ -23,12 +19,12 @@ function* fetchZundoko(): Iterable<
   }
 }
 
-export function* watchZundokoButtonClicked(): Iterable<ForkEffect> {
+export function* watchZundokoButtonClicked() {
   yield takeEvery(ZUNDOKO_BUTTON_CLICKED, fetchZundoko);
 }
 
 let numZuns = 0;
-function* evaluateKiyoshi(action: ZundokoFetchSucceeded): Iterable<PutEffect<Kiyoshied>> {
+function* evaluateKiyoshi(action: ZundokoFetchSucceeded) {
   if (action.payload.zundoko === 'zun') {
     numZuns += 1;
     return;
@@ -41,6 +37,6 @@ function* evaluateKiyoshi(action: ZundokoFetchSucceeded): Iterable<PutEffect<Kiy
   }
 }
 
-export function* watchFetchZundokoSucceeded(): Iterable<ForkEffect> {
+export function* watchFetchZundokoSucceeded() {
   yield takeEvery(ZUNDOKO_FETCH_SUCCEEDED, evaluateKiyoshi);
 }
