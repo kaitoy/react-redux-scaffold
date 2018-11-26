@@ -7,7 +7,7 @@ import configureStore, { history } from './configureStore';
 
 // const initialState = {
 //   kiyoshi: { open: false },
-//   zundokos: ['Zun', 'Zun'],
+//   zundoko: { zundokos: ['Zun', 'Zun'] },
 // };
 const store = configureStore();
 const root = document.getElementById('root');

@@ -6,11 +6,17 @@ import { logger } from 'redux-logger';
 import rootSaga from './sagas/rootSaga';
 import createRootReducer from './reducers/rootReducer';
 
-export interface Store {
+export interface ZundokoState {
   zundokos: string[];
-  kiyoshi: {
-    open: boolean;
-  };
+}
+
+export interface KiyoshiState {
+  open: boolean;
+}
+
+export interface Store {
+  zundoko: ZundokoState;
+  kiyoshi: KiyoshiState;
 }
 
 const sagaMiddleware = createSagaMiddleware();

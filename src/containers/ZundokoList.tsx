@@ -3,8 +3,8 @@ import TextList from '../components/TextList';
 import { Store } from '../configureStore';
 
 const ZundokoList = connect(
-  ({ zundokos }: Store) => ({
-    textList: zundokos,
+  ({ zundoko }: Store) => ({
+    textList: zundoko.zundokos,
   }),
   {},
 )(TextList);
