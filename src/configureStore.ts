@@ -3,11 +3,14 @@ import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import { logger } from 'redux-logger';
+import { Record, List } from 'immutable';
 import rootSaga from './sagas/rootSaga';
 import createRootReducer from './reducers/rootReducer';
 
-export interface ZundokoState {
-  zundokos: string[];
+export class ZundokoState extends Record({ zundokos: List<string>() }) {
+  addZundoko(zundoko: string) {
+    return this.set('zundokos', this.get('zundokos').push(zundoko));
+  }
 }
 
 export interface KiyoshiState {

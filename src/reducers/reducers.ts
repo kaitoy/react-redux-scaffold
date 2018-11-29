@@ -4,7 +4,7 @@ import { ZUNDOKO_FETCH_SUCCEEDED, KIYOSHIED } from '../actions/actionTypes';
 import { Kiyoshied, ZundokoFetchSucceeded } from '../actions/actions';
 
 export const zundoko: Reducer<ZundokoState, ZundokoFetchSucceeded> = (
-  state = { zundokos: [] },
+  state = new ZundokoState(),
   action,
 ) => {
   switch (action.type) {
@@ -12,7 +12,7 @@ export const zundoko: Reducer<ZundokoState, ZundokoFetchSucceeded> = (
       if (typeof action.payload === 'undefined') {
         return state;
       }
-      return { zundokos: [...state.zundokos, action.payload.zundoko === 'zun' ? 'ズン' : 'ドコ'] };
+      return state.addZundoko(action.payload.zundoko === 'zun' ? 'ズン' : 'ドコ');
     default:
       return state;
   }
