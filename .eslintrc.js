@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     'jest/globals': true,
   },
-  parser: 'typescript-eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     jsx: true,
     useJSXTextNode: false,
