@@ -11,7 +11,7 @@ const Zundoko: FunctionComponent = () => (
     <AppBar position="static" color="default">
       <Toolbar>
         <ZundokoButton />
-        <Typography variant="title" color="inherit">
+        <Typography variant="h2" color="inherit">
           ZUNDOKO
         </Typography>
       </Toolbar>

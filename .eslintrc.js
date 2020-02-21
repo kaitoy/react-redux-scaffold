@@ -1,17 +1,19 @@
 module.exports = {
   env: {
     browser: true,
-    'jest/globals': true,
+    es2020: true,
+    jest: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     jsx: true,
     useJSXTextNode: false,
   },
-  extends: ['airbnb', 'prettier'],
+  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier/react'],
   plugins: ['jest'],
   rules: {
     'react/jsx-filename-extension': ['error', { extensions: ['.tsx', '.jsx'] }],
+    'import/extensions': ['error', 'never'],
   },
   overrides: [
     {
@@ -21,6 +23,7 @@ module.exports = {
         // (e.g. error  'FunctionComponent' is defined but never used  no-unused-vars)
         // Unused vars are checked by TypeScript compiler (at-loader) instead.
         'no-unused-vars': 'off',
+        'react/prop-types': 'off',
       },
     },
   ],

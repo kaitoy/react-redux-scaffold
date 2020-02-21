@@ -1,12 +1,9 @@
 const path = require('path');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const webpack = require('webpack');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const { CheckerPlugin } = require('awesome-typescript-loader');
 const packageJson = require('./package.json');
 
 const srcDir = 'src';
-const outputDir = 'dist';
 const projectName = packageJson.name;
 const projectAuthor = packageJson.author;
 const licenseName = packageJson.license;
@@ -23,26 +20,15 @@ ${copyright}`;
 const body = {
   entry: [`./${packageJson.main}`],
   output: {
-    path: path.resolve(__dirname, outputDir),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx|ts|tsx)$/,
-        include: [path.resolve(__dirname, srcDir)],
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        options: {
-          configFile: './.eslintrc.js',
-          failOnError: true,
-        },
-      },
-      {
-        test: /\.(js|jsx|ts|tsx)$/,
-        include: [path.resolve(__dirname, srcDir)],
-        enforce: 'pre',
-        loader: 'stylelint-custom-processor-loader',
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        include: [path.resolve(__dirname, 'node_modules')],
+        loader: 'file-loader',
       },
       {
         test: /\.(js|jsx)$/,
@@ -52,12 +38,28 @@ const body = {
       {
         test: /\.(ts|tsx)$/,
         include: [path.resolve(__dirname, srcDir)],
-        loader: 'awesome-typescript-loader',
+        loader: 'ts-loader',
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        include: [path.resolve(__dirname, 'node_modules')],
-        loader: 'file-loader',
+        test: /\.js$/,
+        enforce: 'pre',
+        loader: 'source-map-loader',
+      },
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
+        include: [path.resolve(__dirname, srcDir)],
+        enforce: 'pre',
+        loader: 'stylelint-custom-processor-loader',
+      },
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
+        include: [path.resolve(__dirname, srcDir)],
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        options: {
+          configFile: './.eslintrc.js',
+          failOnError: true,
+        },
       },
     ],
   },
@@ -71,11 +73,9 @@ const body = {
       raw: false,
       entryOnly: true,
     }),
-    new CheckerPlugin(),
   ],
 };
 
 module.exports = {
-  outputDir,
   body,
 };

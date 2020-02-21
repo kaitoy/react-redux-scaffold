@@ -1,16 +1,10 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { createBrowserHistory } from 'history';
-import { routerMiddleware } from 'connected-react-router';
-import { logger } from 'redux-logger';
-import { Record, List } from 'immutable';
 import rootSaga from './sagas/rootSaga';
-import createRootReducer from './reducers/rootReducer';
+import rootReducer from './reducers/rootReducer';
 
-export class ZundokoState extends Record({ zundokos: List<string>() }) {
-  addZundoko(zundoko: string) {
-    return this.set('zundokos', this.get('zundokos').push(zundoko));
-  }
+export interface ZundokoState {
+  zundokos: string[];
 }
 
 export interface KiyoshiState {
@@ -23,21 +17,12 @@ export interface Store {
 }
 
 const sagaMiddleware = createSagaMiddleware();
-export const history = createBrowserHistory();
 
-export default function configureStore(initialState: Partial<Store> = {}) {
+export default function configureStore() {
   const middlewares = [];
-  if (process.env.NODE_ENV === `development`) {
-    middlewares.push(logger);
-  }
-  middlewares.push(routerMiddleware(history));
   middlewares.push(sagaMiddleware);
-
-  const store = createStore(
-    createRootReducer(history),
-    initialState,
-    applyMiddleware(...middlewares),
-  );
+  const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middlewares)));
   sagaMiddleware.run(rootSaga);
   return store;
 }

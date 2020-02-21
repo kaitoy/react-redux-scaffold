@@ -4,7 +4,7 @@ import { Store } from '../configureStore';
 
 const ZundokoList = connect(
   ({ zundoko }: Store) => ({
-    textList: zundoko.zundokos.toArray(),
+    textList: zundoko.zundokos,
   }),
   {},
 )(TextList);

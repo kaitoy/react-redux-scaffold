@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, SagaReturnType } from 'redux-saga/effects';
 import { getZundoko } from '../services/apis';
 import { ZUNDOKO_BUTTON_CLICKED, ZUNDOKO_FETCH_SUCCEEDED } from '../actions/actionTypes';
 import {
@@ -10,8 +10,8 @@ import {
 
 function* fetchZundoko() {
   try {
-    const response = yield call(getZundoko);
-    const payload = response.data;
+    const response: SagaReturnType<typeof getZundoko> = yield call(getZundoko);
+    const payload = { zundoko: response.data.uuid.match(/^[0-9]/) ? 'ズン' : 'ドコ' };
     const meta = { statusCode: response.status, statusText: response.statusText };
     yield put(zundokoFetchSucceeded(payload, meta));
   } catch (ex) {
@@ -25,7 +25,7 @@ export function* watchZundokoButtonClicked() {
 
 let numZuns = 0;
 function* evaluateKiyoshi(action: ZundokoFetchSucceeded) {
-  if (action.payload.zundoko === 'zun') {
+  if (action.payload.zundoko === 'ズン') {
     numZuns += 1;
     return;
   }
