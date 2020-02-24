@@ -14,5 +14,5 @@
 * eslint-config-airbnb 18.0.1
 * stylelint 13.2.0
 * Jest 25.1.0
-* Enzyme 3.11.0
+* react-testing-library 9.4.1
 * webpack 4.41.6

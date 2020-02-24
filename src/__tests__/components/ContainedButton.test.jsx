@@ -1,24 +1,19 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import Enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import ContainedButton from '../../components/ContainedButton';
-
-beforeAll(() => {
-  Enzyme.configure({ adapter: new Adapter() });
-});
 
 describe('components', () => {
   describe('ContainedButton', () => {
     test('renders correctly', () => {
-      const tree = renderer.create(<ContainedButton text="ZUNDOKO" onClick={() => {}} />).toJSON();
-      expect(tree).toMatchSnapshot();
+      const { asFragment } = render(<ContainedButton text="ZUNDOKO" onClick={() => {}} />);
+      expect(asFragment()).toMatchSnapshot();
     });
 
     test("calls the passed handler when it's clicked", () => {
       const handler = jest.fn();
-      const wrapper = mount(<ContainedButton text="ZUNDOKO" onClick={handler} />);
-      wrapper.find('button').simulate('click');
+      const { getByText } = render(<ContainedButton text="ZUNDOKO" onClick={handler} />);
+      fireEvent.click(getByText('ZUNDOKO'));
       expect(handler).toHaveBeenCalledTimes(1);
     });
   });

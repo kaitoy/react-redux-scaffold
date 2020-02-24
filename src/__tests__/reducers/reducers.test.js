@@ -7,7 +7,7 @@ const initialState = {
 
 describe('reducers', () => {
   describe('kiyoshi()', () => {
-    test('returns the passsed state as it is when the action is not KIYOSHIED', () => {
+    test('returns the passed state as it is when the action is not KIYOSHIED', () => {
       const state = kiyoshi(initialState, zundokoFetchFailed({}));
       expect(state).toEqual(initialState);
     });
