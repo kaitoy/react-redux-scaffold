@@ -8,7 +8,7 @@ import {
   ZundokoFetchSucceeded,
 } from '../actions/actions';
 
-function* fetchZundoko() {
+export function* fetchZundoko() {
   try {
     const response: SagaReturnType<typeof getZundoko> = yield call(getZundoko);
     const payload = { zundoko: response.data.uuid.match(/^[0-9]/) ? 'ズン' : 'ドコ' };

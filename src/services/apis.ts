@@ -1,11 +1,15 @@
 import axios from 'axios';
 
-export const ZUNDOKO_URL = 'https://httpbin.org/uuid';
+export const client = axios.create({
+  baseURL: 'https://httpbin.org',
+  timeout: 2000,
+});
+export const API_UUID = '/uuid';
 
 export type Uuid = {
   uuid: string;
 };
 
 export function getZundoko() {
-  return axios.get<Uuid>(ZUNDOKO_URL);
+  return client.get<Uuid>(API_UUID);
 }
