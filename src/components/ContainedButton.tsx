@@ -1,11 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import { ActionCreator } from 'redux';
 import Button from '@material-ui/core/Button';
-import { ZundokoButtonClicked } from '../actions/actions';
+import { zundokoButtonClicked } from '../actions/actions';
 
 interface Props {
   text: string;
-  onClick: ActionCreator<ZundokoButtonClicked>;
+  onClick: typeof zundokoButtonClicked;
 }
 
 const ContainedButton: FunctionComponent<Props> = ({ text, onClick }) => (

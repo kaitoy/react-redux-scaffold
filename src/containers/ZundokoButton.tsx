@@ -5,7 +5,7 @@ import { zundokoButtonClicked } from '../actions/actions';
 
 const ZundokoButton = () => {
   const dispatch = useDispatch();
-  return <ContainedButton text="ZUNDOKO" onClick={() => dispatch(zundokoButtonClicked({}))} />;
+  return <ContainedButton text="ZUNDOKO" onClick={() => dispatch(zundokoButtonClicked())} />;
 };
 
 export default ZundokoButton;

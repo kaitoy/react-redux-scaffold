@@ -11,7 +11,7 @@ export interface KiyoshiState {
   open: boolean;
 }
 
-export interface Store {
+export interface StoreState {
   zundoko: ZundokoState;
   kiyoshi: KiyoshiState;
 }

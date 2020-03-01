@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import MyDialog from '../components/MyDialog';
-import { Store } from '../configureStore';
+import { StoreState } from '../configureStore';
 
 const selectKiyoshiOpen = createSelector(
-  ({ kiyoshi }: Store) => kiyoshi.open,
+  ({ kiyoshi }: StoreState) => kiyoshi.open,
   open => open,
 );
 

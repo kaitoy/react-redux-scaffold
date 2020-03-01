@@ -2,7 +2,6 @@ import MockAdapter from 'axios-mock-adapter';
 import { runSaga } from 'redux-saga';
 import { fetchZundoko } from '../../sagas/zundoko';
 import { client, API_UUID } from '../../services/apis';
-import { ZUNDOKO_FETCH_SUCCEEDED, ZUNDOKO_FETCH_FAILED } from '../../actions/actionTypes';
 
 const axiosMock = new MockAdapter(client);
 
@@ -24,13 +23,9 @@ describe('sagas', () => {
 
       expect(dispatched.length).toBe(1);
       expect(dispatched[0]).toEqual({
-        type: ZUNDOKO_FETCH_SUCCEEDED,
+        type: 'ZUNDOKO_FETCH_SUCCEEDED',
         payload: {
           zundoko: 'ズン',
-        },
-        meta: {
-          statusCode: 200,
-          statusText: undefined,
         },
       });
     });
@@ -51,13 +46,9 @@ describe('sagas', () => {
 
       expect(dispatched.length).toBe(1);
       expect(dispatched[0]).toEqual({
-        type: ZUNDOKO_FETCH_SUCCEEDED,
+        type: 'ZUNDOKO_FETCH_SUCCEEDED',
         payload: {
           zundoko: 'ドコ',
-        },
-        meta: {
-          statusCode: 201,
-          statusText: undefined,
         },
       });
     });
@@ -74,7 +65,7 @@ describe('sagas', () => {
       ).toPromise();
 
       expect(dispatched.length).toBe(1);
-      expect(dispatched[0].type).toBe(ZUNDOKO_FETCH_FAILED);
+      expect(dispatched[0].type).toBe('ZUNDOKO_FETCH_FAILED');
       expect(dispatched[0].error).toBe(true);
     });
   });

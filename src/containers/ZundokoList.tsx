@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import TextList from '../components/TextList';
-import { Store } from '../configureStore';
+import { StoreState } from '../configureStore';
 
 const selectZundokos = createSelector(
-  ({ zundoko }: Store) => zundoko.zundokos,
+  ({ zundoko }: StoreState) => zundoko.zundokos,
   zundokos => zundokos,
 );
 
