@@ -3,18 +3,18 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/rootSaga';
 import rootReducer from './reducers/rootReducer';
 
-export interface ZundokoState {
+export type ZundokoState = {
   zundokos: string[];
-}
+};
 
-export interface KiyoshiState {
+export type KiyoshiState = {
   open: boolean;
-}
+};
 
-export interface StoreState {
+export type StoreState = {
   zundoko: ZundokoState;
   kiyoshi: KiyoshiState;
-}
+};
 
 const sagaMiddleware = createSagaMiddleware();
 
