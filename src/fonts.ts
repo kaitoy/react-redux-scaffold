@@ -18,7 +18,7 @@ const Fonts = createGlobalStyle`
     src:
       local('Roboto Light'),
       local('Roboto-Light'),
-      url('${roboto300}') format('woff');
+      url('${roboto300.default}') format('woff');
   }
 
   /* roboto-300italic - latin */
@@ -30,7 +30,7 @@ const Fonts = createGlobalStyle`
     src:
       local('Roboto Light italic'),
       local('Roboto-Lightitalic'),
-      url('${roboto300Italic}') format('woff');
+      url('${roboto300Italic.default}') format('woff');
   }
 
   /* roboto-400normal - latin */
@@ -42,7 +42,7 @@ const Fonts = createGlobalStyle`
     src:
       local('Roboto Regular'),
       local('Roboto-Regular'),
-      url('${roboto400}') format('woff');
+      url('${roboto400.default}') format('woff');
   }
 
   /* roboto-400italic - latin */
@@ -54,7 +54,7 @@ const Fonts = createGlobalStyle`
     src:
       local('Roboto Regular italic'),
       local('Roboto-Regularitalic'),
-      url('${roboto400Italic}') format('woff');
+      url('${roboto400Italic.default}') format('woff');
   }
 
   /* roboto-500normal - latin */
@@ -66,7 +66,7 @@ const Fonts = createGlobalStyle`
     src:
       local('Roboto Medium'),
       local('Roboto-Medium'),
-      url('${roboto500}') format('woff');
+      url('${roboto500.default}') format('woff');
   }
 
   /* roboto-500italic - latin */
@@ -78,7 +78,7 @@ const Fonts = createGlobalStyle`
     src:
       local('Roboto Medium italic'),
       local('Roboto-Mediumitalic'),
-      url('${roboto500Italic}') format('woff');
+      url('${roboto500Italic.default}') format('woff');
   }
 `;
 
