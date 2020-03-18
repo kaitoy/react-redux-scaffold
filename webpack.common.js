@@ -21,7 +21,9 @@ const body = {
   entry: [`./${packageJson.main}`],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    publicPath: '/public/assets/',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   module: {
     rules: [
@@ -66,6 +68,9 @@ const body = {
   resolve: {
     extensions: ['*', '.ts', '.tsx', '.js', '.jsx'],
     modules: ['node_modules'],
+    alias: {
+      '~': path.resolve(__dirname, srcDir),
+    },
   },
   plugins: [
     new webpack.BannerPlugin({

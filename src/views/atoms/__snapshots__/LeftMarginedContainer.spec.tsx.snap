@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeftMarginedContainer is rendered as expected 1`] = `
+<DocumentFragment>
+  .c0 {
+  margin-left: 1600px;
+  margin-left: 200px;
+  width: calc(100% - 200px);
+  text-align: center;
+}
+
+<div
+    class="MuiContainer-root c0 MuiContainer-maxWidthLg"
+  >
+    <div />
+  </div>
+</DocumentFragment>
+`;

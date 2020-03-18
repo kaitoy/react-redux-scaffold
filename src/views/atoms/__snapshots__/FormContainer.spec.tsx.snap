@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormContainer is rendered as expected 1`] = `
+<DocumentFragment>
+  .c0 {
+  padding: 16px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 30em;
+  text-align: left;
+}
+
+<div
+    class="MuiPaper-root MuiContainer-root c0 MuiPaper-elevation1 MuiPaper-rounded"
+    p="2"
+  >
+    <div />
+  </div>
+</DocumentFragment>
+`;

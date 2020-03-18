@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FixedWidthDrawer is rendered as expected 1`] = `
+<DocumentFragment>
+  .c0 {
+  width: 200px;
+}
+
+<div
+    aria-label="drawer"
+    class="MuiDrawer-root MuiDrawer-docked c0"
+  >
+    <div
+      class="MuiPaper-root MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0"
+      style="width: 200px;"
+    />
+  </div>
+</DocumentFragment>
+`;

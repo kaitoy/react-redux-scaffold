@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SidebarMenuItem is rendered as expected 1`] = `
+<DocumentFragment>
+  <div
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-button"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    />
+    <div
+      class="MuiListItemText-root MuiListItemText-dense"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-h6"
+      >
+        test
+      </span>
+    </div>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </div>
+</DocumentFragment>
+`;

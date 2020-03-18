@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField is rendered as expected 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root"
+  >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+      data-shrink="false"
+      for="test"
+      id="test-label"
+    >
+      Test
+    </label>
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+    >
+      <input
+        aria-invalid="false"
+        aria-label="input-test"
+        class="MuiInputBase-input MuiInput-input"
+        id="test"
+        name="test"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TextField readOnly ver is rendered as expected 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root"
+  >
+    <label
+      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
+      data-shrink="false"
+      for="test"
+      id="test-label"
+    >
+      Test
+    </label>
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+    >
+      <input
+        aria-describedby="test-helper-text"
+        aria-invalid="false"
+        aria-label="input-test"
+        class="MuiInputBase-input MuiInput-input"
+        id="test"
+        name="test"
+        readonly=""
+        type="text"
+        value=""
+      />
+    </div>
+    <p
+      class="MuiFormHelperText-root"
+      id="test-helper-text"
+    >
+      Read-only
+    </p>
+  </div>
+</DocumentFragment>
+`;

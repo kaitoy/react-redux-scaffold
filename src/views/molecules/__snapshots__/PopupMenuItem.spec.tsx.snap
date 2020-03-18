@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopupMenuItem is rendered as expected 1`] = `
+<DocumentFragment>
+  <li
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+    role="menuitem"
+    tabindex="-1"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    />
+    <span
+      class="MuiTypography-root"
+    >
+      test
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </li>
+</DocumentFragment>
+`;

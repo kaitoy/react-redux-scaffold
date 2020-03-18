@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeftMarginedAppBar is rendered as expected 1`] = `
+<DocumentFragment>
+  .c0 {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+}
+
+<header
+    class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary c0 mui-fixed MuiPaper-elevation4"
+  />
+</DocumentFragment>
+`;

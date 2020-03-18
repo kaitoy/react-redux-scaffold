@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -9,7 +11,7 @@ module.exports = {
     jsx: true,
     useJSXTextNode: false,
   },
-  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier/react'],
+  extends: ['airbnb', 'airbnb/hooks', 'plugin:prettier/recommended', 'prettier/react'],
   plugins: ['jest'],
   rules: {
     'react/jsx-filename-extension': ['error', { extensions: ['.tsx', '.jsx'] }],
@@ -29,9 +31,7 @@ module.exports = {
   ],
   settings: {
     'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
+      webpack: { config: path.join(__dirname, 'webpack.prod.js') },
     },
   },
 };

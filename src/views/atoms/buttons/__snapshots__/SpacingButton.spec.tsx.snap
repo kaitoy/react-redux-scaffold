@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpacingButton is rendered as expected 1`] = `
+<DocumentFragment>
+  .c0 {
+  margin-left: 8px;
+  padding-bottom: 16px;
+}
+
+<button
+    class="MuiButtonBase-root MuiButton-root MuiButton-text c0"
+    ml="1"
+    pb="2"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Test
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</DocumentFragment>
+`;

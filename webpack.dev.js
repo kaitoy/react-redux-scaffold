@@ -14,9 +14,11 @@ module.exports = webpackMerge(webpackCommon.body, {
     hot: true,
     port: 3000,
     // Full URL in publicPath is necessary for Hot Module Replacement.
-    // The path part of the url must be / for dynamic import.
-    publicPath: 'http://localhost:3000/',
+    publicPath: 'http://localhost:3000/public/assets/',
     historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:8080',
+    },
   },
   plugins: [new HardSourceWebpackPlugin()],
 });

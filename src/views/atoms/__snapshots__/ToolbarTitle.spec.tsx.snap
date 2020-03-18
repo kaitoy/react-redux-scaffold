@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolbarTitle is rendered as expected 1`] = `
+<DocumentFragment>
+  .c0 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+<p
+    class="MuiTypography-root c0 MuiTypography-body1"
+  />
+</DocumentFragment>
+`;
