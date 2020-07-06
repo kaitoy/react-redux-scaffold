@@ -13,8 +13,35 @@ import {
   zundokosDeleteFailed,
 } from './actions';
 import { kiyoshiBeingAdded } from '~/state/ducks/kiyoshi/actions';
-import { ZundokoState } from './index';
-import { normalizeZundokos, zundokoNormalizrSchemaKey } from './models';
+import {
+  Zundoko,
+  NormalizedZundokos,
+  normalizeZundokos,
+  zundokoNormalizrSchemaKey,
+} from './models';
+
+/**
+ * The type of Zundoko state in the Redux store.
+ */
+export type ZundokoState = Readonly<{
+  /** True if data already fetched, false otherwise. */
+  dataReady: boolean;
+
+  /** True if some entities are being deleted; false otherwise. */
+  dataBeingDeleted: boolean;
+
+  /** True if some entities are being posted; false otherwise. */
+  dataBeingPosted: boolean;
+
+  /** Fetched data. */
+  data: {
+    ids: Zundoko['id'][];
+    entities: NormalizedZundokos;
+  };
+
+  /** Set to true if the zundokos pattern meets the Kiyoshi condition. */
+  gotToKiyoshi: boolean;
+}>;
 
 const initialState: ZundokoState = {
   dataReady: false,

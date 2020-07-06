@@ -1,6 +1,14 @@
 import produce, { Draft } from 'immer';
 import { signedOut, signedIn } from './actions';
-import { AppState } from './index';
+import { User } from '~/state/ducks/user/models';
+
+/**
+ * The type of application state in the Redux store.
+ */
+export type AppState = Readonly<{
+  /** The current user. */
+  currentUser?: User;
+}>;
 
 const initialState: AppState = {
   currentUser: undefined,

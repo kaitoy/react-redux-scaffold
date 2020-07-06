@@ -5,8 +5,9 @@ import {
   getKiyoshies,
   getKiyoshi,
 } from './selectors';
-import { KiyoshiState } from './index';
+import { KiyoshiState } from './reducers';
 import { kiyoshiSamples } from './models';
+// @ts-ignore  Cannot find module
 import { UserState } from '~/state/ducks/user';
 
 describe('isKiyoshiDataReady', () => {

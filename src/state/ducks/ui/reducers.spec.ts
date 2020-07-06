@@ -1,5 +1,4 @@
-import { uiReducer } from './reducers';
-import { UIState } from './index';
+import { UIState, uiReducer } from './reducers';
 import { sidebarOpened, sidebarClosed, errorDialogOpened, errorDialogClosed } from './actions';
 
 describe('uiReducer', () => {

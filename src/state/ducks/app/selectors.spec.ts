@@ -1,5 +1,6 @@
 import { getCurrentUser } from './selectors';
-import { AppState } from './index';
+import { AppState } from './reducers';
+// @ts-ignore  Cannot find module
 import { userSamples } from '~/state/ducks/user/models';
 
 describe('getCurrentUser', () => {

@@ -5,7 +5,7 @@ import {
   getUsers,
   getUser,
 } from './selectors';
-import { UserState } from './index';
+import { UserState } from './reducers';
 import { userSamples } from './models';
 
 describe('isUserDataReady', () => {

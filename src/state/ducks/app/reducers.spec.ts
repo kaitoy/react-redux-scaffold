@@ -1,5 +1,4 @@
-import { appReducer } from './reducers';
-import { AppState } from './index';
+import { AppState, appReducer } from './reducers';
 import { signedOut, signedIn } from './actions';
 // @ts-ignore  Cannot find module
 import { userSamples } from '~/state/ducks/user/models';

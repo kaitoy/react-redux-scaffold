@@ -1,5 +1,5 @@
 import { isSidebarOpen, isErrorDialogOpen, getErrorDialogContentText } from './selectors';
-import { UIState } from './index';
+import { UIState } from './reducers';
 
 describe('isSidebarOpen', () => {
   test('returns sidebarOpen in the store.', () => {

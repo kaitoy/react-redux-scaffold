@@ -1,5 +1,4 @@
-import { kiyoshiReducer } from './reducers';
-import { KiyoshiState } from './index';
+import { KiyoshiState, kiyoshiReducer } from './reducers';
 import {
   kiyoshiDataNotReady,
   kiyoshiesBeingFetched,

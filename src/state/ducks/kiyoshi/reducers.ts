@@ -12,7 +12,27 @@ import {
   kiyoshiesDeleteSucceeded,
   kiyoshiesDeleteFailed,
 } from './actions';
-import { KiyoshiState } from './index';
+import { Kiyoshi, NormalizedKiyoshies } from './models';
+
+/**
+ * The type of Kiyoshi state in the Redux store.
+ */
+export type KiyoshiState = Readonly<{
+  /** True if data already fetched, false otherwise. */
+  dataReady: boolean;
+
+  /** True if some entities are being deleted; false otherwise. */
+  dataBeingDeleted: boolean;
+
+  /** True if some entities are being posted; false otherwise. */
+  dataBeingPosted: boolean;
+
+  /** Fetched data. */
+  data: {
+    ids: Kiyoshi['id'][];
+    entities: NormalizedKiyoshies;
+  };
+}>;
 
 const initialState: KiyoshiState = {
   dataReady: false,

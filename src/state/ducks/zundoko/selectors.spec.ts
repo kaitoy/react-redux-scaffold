@@ -6,7 +6,7 @@ import {
   getZundoko,
   isGotToKiyoshi,
 } from './selectors';
-import { ZundokoState } from './index';
+import { ZundokoState } from './reducers';
 import { zundokoSamples } from './models';
 
 describe('isZundokoDataReady', () => {
