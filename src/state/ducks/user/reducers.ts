@@ -13,7 +13,7 @@ import {
   usersDeleteFailed,
 } from './actions';
 import { kiyoshiesFetchSucceeded, kiyoshiFetchSucceeded } from '~/state/ducks/kiyoshi/actions';
-import { User, NormalizedUsers, normalizeUsers, userNormalizrSchemaKey } from './models';
+import { User, NormalizedUsers } from './models';
 
 /**
  * The type of User state in the Redux store.
@@ -80,12 +80,10 @@ export const userReducer = produce(
       case 'user/entitiesFetchSucceeded':
         // eslint-disable-next-line no-param-reassign
         draft.dataReady = true;
-        // eslint-disable-next-line no-case-declarations
-        const normalizedUsers = normalizeUsers(action.payload.user.entities);
         // eslint-disable-next-line no-param-reassign
-        draft.data.ids = normalizedUsers.result;
+        draft.data.ids = action.payload.user.ids;
         // eslint-disable-next-line no-param-reassign
-        draft.data.entities = normalizedUsers.entities[userNormalizrSchemaKey];
+        draft.data.entities = action.payload.user.entities;
         break;
       case 'user/entityBeingFetched':
         // eslint-disable-next-line no-param-reassign

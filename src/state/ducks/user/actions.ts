@@ -1,4 +1,4 @@
-import { User } from './models';
+import { User, NormalizedUser, NormalizedUsers } from './models';
 
 /**
  * Returns an action indicating user data is not ready
@@ -21,18 +21,20 @@ export const usersBeingFetched = (): Readonly<{ type: 'user/entitiesBeingFetched
 /**
  * Returns an action indicating fetching users succeeded.
  *
+ * @param ids - IDs of fetched users.
  * @param users - fetched users.
  * @returns an action.
  */
 export const usersFetchSucceeded = (
-  users: User[],
+  ids: NormalizedUser['id'][],
+  users: NormalizedUsers,
 ): Readonly<{
   type: 'user/entitiesFetchSucceeded';
-  payload: { user: { entities: User[] } };
+  payload: { user: { ids: NormalizedUser['id'][]; entities: NormalizedUsers } };
 }> => ({
   type: 'user/entitiesFetchSucceeded',
   payload: {
-    user: { entities: users },
+    user: { ids, entities: users },
   },
 });
 
@@ -75,10 +77,10 @@ export const userBeingFetched = (
  * @returns an action.
  */
 export const userFetchSucceeded = (
-  user: User,
+  user: NormalizedUser,
 ): Readonly<{
   type: 'user/entityFetchSucceeded';
-  payload: { user: { entity: User } };
+  payload: { user: { entity: NormalizedUser } };
 }> => ({
   type: 'user/entityFetchSucceeded',
   payload: {

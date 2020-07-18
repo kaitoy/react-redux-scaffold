@@ -15,7 +15,7 @@ import {
 } from './actions';
 import { errorDialogOpened } from '~/state/ducks/ui/actions';
 import * as apis from './apis';
-import { Zundoko } from './models';
+import { Zundoko, normalizeZundokos, zundokoNormalizrSchemaKey } from './models';
 
 /**
  * A saga that fetches zundokos.
@@ -23,7 +23,14 @@ import { Zundoko } from './models';
 export function* fetchZundokos() {
   try {
     const zundokos: SagaReturnType<typeof apis.getZundokos> = yield call(apis.getZundokos);
-    yield put(zundokosFetchSucceeded(zundokos));
+    const normalized = normalizeZundokos(zundokos);
+    if (normalized.result.length !== 0) {
+      yield put(
+        zundokosFetchSucceeded(normalized.result, normalized.entities[zundokoNormalizrSchemaKey]),
+      );
+    } else {
+      yield put(zundokosFetchSucceeded([], {}));
+    }
   } catch (ex) {
     yield put(zundokosFetchFailed(ex));
     yield put(errorDialogOpened(ex.toString()));

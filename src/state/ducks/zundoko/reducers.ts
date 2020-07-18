@@ -13,12 +13,7 @@ import {
   zundokosDeleteFailed,
 } from './actions';
 import { kiyoshiBeingAdded } from '~/state/ducks/kiyoshi/actions';
-import {
-  Zundoko,
-  NormalizedZundokos,
-  normalizeZundokos,
-  zundokoNormalizrSchemaKey,
-} from './models';
+import { Zundoko, NormalizedZundokos } from './models';
 
 /**
  * The type of Zundoko state in the Redux store.
@@ -99,12 +94,10 @@ export const zundokoReducer = produce(
       case 'zundoko/entitiesFetchSucceeded':
         // eslint-disable-next-line no-param-reassign
         draft.dataReady = true;
-        // eslint-disable-next-line no-case-declarations
-        const normalizedZundokos = normalizeZundokos(action.payload.zundoko.entities);
         // eslint-disable-next-line no-param-reassign
-        draft.data.ids = normalizedZundokos.result;
+        draft.data.ids = action.payload.zundoko.ids;
         // eslint-disable-next-line no-param-reassign
-        draft.data.entities = normalizedZundokos.entities[zundokoNormalizrSchemaKey];
+        draft.data.entities = action.payload.zundoko.entities;
         break;
       case 'zundoko/entityBeingFetched':
         // eslint-disable-next-line no-param-reassign

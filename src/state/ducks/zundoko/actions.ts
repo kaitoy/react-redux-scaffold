@@ -1,4 +1,4 @@
-import { Zundoko } from './models';
+import { Zundoko, NormalizedZundoko, NormalizedZundokos } from './models';
 
 /**
  * Returns an action indicating zundoko data is not ready
@@ -21,18 +21,20 @@ export const zundokosBeingFetched = (): Readonly<{ type: 'zundoko/entitiesBeingF
 /**
  * Returns an action indicating fetching zundokos succeeded.
  *
+ * @param ids - IDs of fetched zundokos.
  * @param zundokos - fetched zundokos.
  * @returns an action.
  */
 export const zundokosFetchSucceeded = (
-  zundokos: Zundoko[],
+  ids: NormalizedZundoko['id'][],
+  zundokos: NormalizedZundokos,
 ): Readonly<{
   type: 'zundoko/entitiesFetchSucceeded';
-  payload: { zundoko: { entities: Zundoko[] } };
+  payload: { zundoko: { ids: NormalizedZundoko['id'][]; entities: NormalizedZundokos } };
 }> => ({
   type: 'zundoko/entitiesFetchSucceeded',
   payload: {
-    zundoko: { entities: zundokos },
+    zundoko: { ids, entities: zundokos },
   },
 });
 
@@ -75,10 +77,10 @@ export const zundokoBeingFetched = (
  * @returns an action.
  */
 export const zundokoFetchSucceeded = (
-  zundoko: Zundoko,
+  zundoko: NormalizedZundoko,
 ): Readonly<{
   type: 'zundoko/entityFetchSucceeded';
-  payload: { zundoko: { entity: Zundoko } };
+  payload: { zundoko: { entity: NormalizedZundoko } };
 }> => ({
   type: 'zundoko/entityFetchSucceeded',
   payload: {

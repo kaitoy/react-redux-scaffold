@@ -15,6 +15,7 @@ import {
   usersDeleteFailed,
 } from './actions';
 import { errorDialogOpened } from '~/state/ducks/ui/actions';
+import { normalizeUsers, userNormalizrSchemaKey } from './models';
 import * as apis from './apis';
 
 /**
@@ -23,7 +24,14 @@ import * as apis from './apis';
 export function* fetchUsers() {
   try {
     const users: SagaReturnType<typeof apis.getUsers> = yield call(apis.getUsers);
-    yield put(usersFetchSucceeded(users));
+    const normalized = normalizeUsers(users);
+    if (normalized.result.length !== 0) {
+      yield put(
+        usersFetchSucceeded(normalized.result, normalized.entities[userNormalizrSchemaKey]),
+      );
+    } else {
+      yield put(usersFetchSucceeded([], {}));
+    }
   } catch (ex) {
     yield put(usersFetchFailed(ex));
     yield put(errorDialogOpened(ex.toString()));

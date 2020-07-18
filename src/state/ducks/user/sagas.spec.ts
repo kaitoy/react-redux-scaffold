@@ -16,25 +16,59 @@ describe('fetchUsers()', () => {
   beforeEach(() => jest.resetAllMocks());
 
   test('dispatches a usersFetchSucceeded with fetched users', async () => {
-    const users = [...userSamples];
-    // @ts-ignore  Property 'mockResolvedValue' does not exist
-    apis.getUsers.mockResolvedValue(users);
-    const dispatched = [];
+    {
+      // @ts-ignore  Property 'mockResolvedValue' does not exist
+      apis.getUsers.mockResolvedValue(userSamples);
+      const dispatched = [];
 
-    await runSaga(
-      {
-        dispatch: (action) => dispatched.push(action),
-      },
-      fetchUsers,
-    ).toPromise();
+      await runSaga(
+        {
+          dispatch: (action) => dispatched.push(action),
+        },
+        fetchUsers,
+      ).toPromise();
 
-    expect(dispatched.length).toBe(1);
-    expect(dispatched[0]).toEqual<ReturnType<typeof usersFetchSucceeded>>({
-      type: 'user/entitiesFetchSucceeded',
-      payload: {
-        user: { entities: users },
-      },
-    });
+      expect(dispatched.length).toBe(1);
+      expect(dispatched[0]).toEqual<ReturnType<typeof usersFetchSucceeded>>({
+        type: 'user/entitiesFetchSucceeded',
+        payload: {
+          user: {
+            ids: userSamples.map((user) => user.id),
+            entities: userSamples.reduce(
+              (users, user) => ({
+                ...users,
+                [user.id]: user,
+              }),
+              {},
+            ),
+          },
+        },
+      });
+    }
+
+    {
+      // @ts-ignore  Property 'mockResolvedValue' does not exist
+      apis.getUsers.mockResolvedValue([]);
+      const dispatched = [];
+
+      await runSaga(
+        {
+          dispatch: (action) => dispatched.push(action),
+        },
+        fetchUsers,
+      ).toPromise();
+
+      expect(dispatched.length).toBe(1);
+      expect(dispatched[0]).toEqual<ReturnType<typeof usersFetchSucceeded>>({
+        type: 'user/entitiesFetchSucceeded',
+        payload: {
+          user: {
+            ids: [],
+            entities: {},
+          },
+        },
+      });
+    }
   });
 
   test('dispatches a usersFetchFailed and an errorDialogOpened if the fetch failed', async () => {

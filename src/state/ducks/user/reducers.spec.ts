@@ -13,7 +13,7 @@ import {
   usersDeleteSucceeded,
   usersDeleteFailed,
 } from './actions';
-import { userSamples } from './models';
+import { userSamples, NormalizedUsers } from './models';
 // @ts-ignore  Cannot find module
 import { kiyoshiSamples } from '~/state/ducks/kiyoshi/models';
 // @ts-ignore  Cannot find module
@@ -130,17 +130,24 @@ describe('userReducer()', () => {
           dataBeingDeleted: false,
           data: { ids: [], entities: {} },
         };
+        const userIDs = userSamples.map((user) => user.id);
+        const normalizedUsers = userSamples.reduce<NormalizedUsers>(
+          (users, user) => ({
+            ...users,
+            [user.id]: user,
+          }),
+          {},
+        );
 
-        const fetchedUsers = [...userSamples];
-        const state = userReducer(initialState, usersFetchSucceeded(fetchedUsers));
-        expect({ ...state, data: undefined }).toEqual({
+        const state = userReducer(initialState, usersFetchSucceeded(userIDs, normalizedUsers));
+
+        expect(state).toEqual<UserState>({
           ...initialState,
           dataReady: true,
-          data: undefined,
-        });
-        expect(state.data.ids).toEqual(fetchedUsers.map((user) => user.id));
-        fetchedUsers.forEach((user) => {
-          expect(state.data.entities[user.id]).toEqual(user);
+          data: {
+            ids: userIDs,
+            entities: normalizedUsers,
+          },
         });
       }
 
@@ -157,17 +164,25 @@ describe('userReducer()', () => {
             },
           },
         };
-
         const fetchedUsers = userSamples.slice(0, 2);
-        const state = userReducer(initialState, usersFetchSucceeded(fetchedUsers));
-        expect({ ...state, data: undefined }).toEqual({
+        const userIDs = fetchedUsers.map((user) => user.id);
+        const normalizedUsers = fetchedUsers.reduce<NormalizedUsers>(
+          (users, user) => ({
+            ...users,
+            [user.id]: user,
+          }),
+          {},
+        );
+
+        const state = userReducer(initialState, usersFetchSucceeded(userIDs, normalizedUsers));
+
+        expect(state).toEqual<UserState>({
           ...initialState,
           dataReady: true,
-          data: undefined,
-        });
-        expect(state.data.ids).toEqual(fetchedUsers.map((user) => user.id));
-        fetchedUsers.forEach((user) => {
-          expect(state.data.entities[user.id]).toEqual(user);
+          data: {
+            ids: userIDs,
+            entities: normalizedUsers,
+          },
         });
       }
     },

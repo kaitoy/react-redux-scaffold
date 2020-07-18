@@ -15,25 +15,59 @@ describe('fetchZundokos()', () => {
   beforeEach(() => jest.resetAllMocks());
 
   test('dispatches a zundokosFetchSucceeded with fetched zundokos', async () => {
-    const zundokos = [...zundokoSamples];
-    // @ts-ignore  Property 'mockResolvedValue' does not exist
-    apis.getZundokos.mockResolvedValue(zundokos);
-    const dispatched = [];
+    {
+      // @ts-ignore  Property 'mockResolvedValue' does not exist
+      apis.getZundokos.mockResolvedValue(zundokoSamples);
+      const dispatched = [];
 
-    await runSaga(
-      {
-        dispatch: (action) => dispatched.push(action),
-      },
-      fetchZundokos,
-    ).toPromise();
+      await runSaga(
+        {
+          dispatch: (action) => dispatched.push(action),
+        },
+        fetchZundokos,
+      ).toPromise();
 
-    expect(dispatched.length).toBe(1);
-    expect(dispatched[0]).toEqual<ReturnType<typeof zundokosFetchSucceeded>>({
-      type: 'zundoko/entitiesFetchSucceeded',
-      payload: {
-        zundoko: { entities: zundokos },
-      },
-    });
+      expect(dispatched.length).toBe(1);
+      expect(dispatched[0]).toEqual<ReturnType<typeof zundokosFetchSucceeded>>({
+        type: 'zundoko/entitiesFetchSucceeded',
+        payload: {
+          zundoko: {
+            ids: zundokoSamples.map((zundoko) => zundoko.id),
+            entities: zundokoSamples.reduce(
+              (zundokos, zundoko) => ({
+                ...zundokos,
+                [zundoko.id]: zundoko,
+              }),
+              {},
+            ),
+          },
+        },
+      });
+    }
+
+    {
+      // @ts-ignore  Property 'mockResolvedValue' does not exist
+      apis.getZundokos.mockResolvedValue([]);
+      const dispatched = [];
+
+      await runSaga(
+        {
+          dispatch: (action) => dispatched.push(action),
+        },
+        fetchZundokos,
+      ).toPromise();
+
+      expect(dispatched.length).toBe(1);
+      expect(dispatched[0]).toEqual<ReturnType<typeof zundokosFetchSucceeded>>({
+        type: 'zundoko/entitiesFetchSucceeded',
+        payload: {
+          zundoko: {
+            ids: [],
+            entities: {},
+          },
+        },
+      });
+    }
   });
 
   test('dispatches a zundokosFetchFailed and an errorDialogOpened if the fetch failed', async () => {

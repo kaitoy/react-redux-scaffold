@@ -13,7 +13,8 @@ import {
   zundokosDeleteSucceeded,
   zundokosDeleteFailed,
 } from './actions';
-import { zundokoSamples } from './models';
+import { zundokoSamples, NormalizedZundokos } from './models';
+import { normalizeUsers } from '../user/models';
 
 describe('zundokoReducer()', () => {
   beforeEach(() => {
@@ -144,16 +145,27 @@ describe('zundokoReducer()', () => {
           gotToKiyoshi: false,
         };
 
-        const fetchedZundokos = [...zundokoSamples];
-        const state = zundokoReducer(initialState, zundokosFetchSucceeded(fetchedZundokos));
-        expect({ ...state, data: undefined }).toEqual({
+        const zundokoIDs = zundokoSamples.map((zundoko) => zundoko.id);
+        const normalizedZundokos = zundokoSamples.reduce<NormalizedZundokos>(
+          (zundokos, zundoko) => ({
+            ...zundokos,
+            [zundoko.id]: zundoko,
+          }),
+          {},
+        );
+
+        const state = zundokoReducer(
+          initialState,
+          zundokosFetchSucceeded(zundokoIDs, normalizedZundokos),
+        );
+
+        expect(state).toEqual<ZundokoState>({
           ...initialState,
           dataReady: true,
-          data: undefined,
-        });
-        expect(state.data.ids).toEqual(fetchedZundokos.map((zd) => zd.id));
-        fetchedZundokos.forEach((zd) => {
-          expect(state.data.entities[zd.id]).toEqual(zd);
+          data: {
+            ids: zundokoIDs,
+            entities: normalizedZundokos,
+          },
         });
       }
 
@@ -171,17 +183,28 @@ describe('zundokoReducer()', () => {
           },
           gotToKiyoshi: false,
         };
-
         const fetchedZundokos = zundokoSamples.slice(0, 2);
-        const state = zundokoReducer(initialState, zundokosFetchSucceeded(fetchedZundokos));
-        expect({ ...state, data: undefined }).toEqual({
+        const zundokoIDs = fetchedZundokos.map((zundoko) => zundoko.id);
+        const normalizedZundokos = fetchedZundokos.reduce<NormalizedZundokos>(
+          (users, user) => ({
+            ...users,
+            [user.id]: user,
+          }),
+          {},
+        );
+
+        const state = zundokoReducer(
+          initialState,
+          zundokosFetchSucceeded(zundokoIDs, normalizedZundokos),
+        );
+
+        expect(state).toEqual<ZundokoState>({
           ...initialState,
           dataReady: true,
-          data: undefined,
-        });
-        expect(state.data.ids).toEqual(fetchedZundokos.map((zd) => zd.id));
-        fetchedZundokos.forEach((zd) => {
-          expect(state.data.entities[zd.id]).toEqual(zd);
+          data: {
+            ids: zundokoIDs,
+            entities: normalizedZundokos,
+          },
         });
       }
     },
