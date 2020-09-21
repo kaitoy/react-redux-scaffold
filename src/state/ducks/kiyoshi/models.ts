@@ -1,13 +1,15 @@
 import { schema, normalize, denormalize } from 'normalizr';
-import joi from '@hapi/joi';
+import Ajv from 'ajv';
 import {
   User,
-  userJoiSchema,
   userSamples,
   userNormalizrSchema,
   NormalizedUsers,
   userNormalizrSchemaKey,
 } from '~/state/ducks/user/models';
+
+// https://stackoverflow.com/questions/36148639/webpack-not-able-to-import-images-using-express-and-angular2-in-typescript
+const swaggerSpec = require('~/swagger.yaml');
 
 /**
  * The type of Kiyoshi.
@@ -31,16 +33,15 @@ export type NormalizedKiyoshi = Omit<Kiyoshi, 'madeBy'> & {
   madeBy: User['id'];
 };
 
-/**
- * The Joi schema of Kiyoshi.
- */
-export const kiyoshiJoiSchema = joi.object({
-  id: joi.string().uuid().required(),
-  saidAt: joi.string().isoDate().required(),
-  madeBy: joi
-    .alternatives()
-    .try(userJoiSchema, userJoiSchema.$_reach(['id']))
-    .required(),
+const ajv = new Ajv({ allErrors: true }).addSchema(swaggerSpec, 'zundoko-kiyoshi');
+const doValidateKiyoshi = ajv.compile({
+  $ref: 'zundoko-kiyoshi#/definitions/Kiyoshi',
+});
+const doValidateKiyoshies = ajv.compile({
+  type: 'array',
+  items: {
+    $ref: 'zundoko-kiyoshi#/definitions/Kiyoshi',
+  },
 });
 
 /**
@@ -48,10 +49,13 @@ export const kiyoshiJoiSchema = joi.object({
  *
  * @param obj - an object to validate.
  * @returns the validated given object.
- * @throws {ValidationError} if the given object is not a valid Kiyoshi object.
+ * @throws {Ajv.ValidationError} if the given object is not a valid Kiyoshi object.
  */
 export const validateKiyoshi = (obj: any) => {
-  joi.assert(obj, kiyoshiJoiSchema.required());
+  doValidateKiyoshi(obj);
+  if (doValidateKiyoshi.errors) {
+    throw new Ajv.ValidationError(doValidateKiyoshi.errors);
+  }
   return obj as Kiyoshi;
 };
 
@@ -60,10 +64,13 @@ export const validateKiyoshi = (obj: any) => {
  *
  * @param obj - an object to validate.
  * @returns the validated given object.
- * @throws {ValidationError} if the given object is not a valid Kiyoshi list.
+ * @throws {Ajv.ValidationError} if the given object is not a valid Kiyoshi list.
  */
 export const validateKiyoshiList = (obj: any) => {
-  joi.assert(obj, joi.array().items(kiyoshiJoiSchema).required());
+  doValidateKiyoshies(obj);
+  if (doValidateKiyoshies.errors) {
+    throw new Ajv.ValidationError(doValidateKiyoshies.errors);
+  }
   return obj as Kiyoshi[];
 };
 

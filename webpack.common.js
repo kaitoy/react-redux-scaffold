@@ -33,6 +33,12 @@ const body = {
         loader: 'file-loader',
       },
       {
+        test: /\.ya?ml$/,
+        type: 'json',
+        include: [path.resolve(__dirname, srcDir)],
+        loader: 'yaml-loader',
+      },
+      {
         test: /\.(js|jsx)$/,
         include: [path.resolve(__dirname, srcDir)],
         loader: 'babel-loader',

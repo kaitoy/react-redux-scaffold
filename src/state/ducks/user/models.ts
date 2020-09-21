@@ -1,5 +1,8 @@
 import { schema, normalize, denormalize } from 'normalizr';
-import joi from '@hapi/joi';
+import Ajv from 'ajv';
+
+// https://stackoverflow.com/questions/36148639/webpack-not-able-to-import-images-using-express-and-angular2-in-typescript
+const swaggerSpec = require('~/swagger.yaml');
 
 /**
  * The type of User.
@@ -23,20 +26,15 @@ export type User = {
  */
 export type NormalizedUser = User;
 
-/**
- * The Joi schema of User.
- */
-export const userJoiSchema = joi.object({
-  id: joi
-    .string()
-    .email({ tlds: { allow: false } })
-    .required(),
-  password: joi.string().required(),
-  name: joi.string().required(),
-  dateOfBirth: joi
-    .string()
-    .pattern(new RegExp(/^\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$/))
-    .required(),
+const ajv = new Ajv({ allErrors: true }).addSchema(swaggerSpec, 'zundoko-kiyoshi');
+const doValidateUser = ajv.compile({
+  $ref: 'zundoko-kiyoshi#/definitions/User',
+});
+const doValidateUsers = ajv.compile({
+  type: 'array',
+  items: {
+    $ref: 'zundoko-kiyoshi#/definitions/User',
+  },
 });
 
 /**
@@ -44,10 +42,13 @@ export const userJoiSchema = joi.object({
  *
  * @param obj - an object to validate.
  * @returns the validated given object.
- * @throws {ValidationError} if the given object is not a valid User object.
+ * @throws {Ajv.ValidationError} if the given object is not a valid User object.
  */
 export const validateUser = (obj: any) => {
-  joi.assert(obj, userJoiSchema.required());
+  doValidateUser(obj);
+  if (doValidateUser.errors) {
+    throw new Ajv.ValidationError(doValidateUser.errors);
+  }
   return obj as User;
 };
 
@@ -56,10 +57,13 @@ export const validateUser = (obj: any) => {
  *
  * @param obj - an object to validate.
  * @returns the validated given object.
- * @throws {ValidationError} if the given object is not a valid User list.
+ * @throws {Ajv.ValidationError} if the given object is not a valid User list.
  */
 export const validateUserList = (obj: any) => {
-  joi.assert(obj, joi.array().items(userJoiSchema).required());
+  doValidateUsers(obj);
+  if (doValidateUsers.errors) {
+    throw new Ajv.ValidationError(doValidateUsers.errors);
+  }
   return obj as User[];
 };
 
@@ -80,13 +84,13 @@ export const userSamples = Object.freeze([
     id: 'Kimberly44@gmail.com',
     password: 'UkT7mDhT',
     name: 'Kylie Trantow',
-    dateOfBirth: '2012-9-23',
+    dateOfBirth: '2012-09-23',
   }),
   Object.freeze({
     id: 'Luis_Hartmann@yahoo.com',
     password: 'IBt6ivxG',
     name: 'Jessy Cronin',
-    dateOfBirth: '2002-9-12',
+    dateOfBirth: '2002-09-12',
   }),
 ] as User[]);
 

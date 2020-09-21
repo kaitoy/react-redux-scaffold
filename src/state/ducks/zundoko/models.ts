@@ -1,5 +1,8 @@
 import { schema, normalize, denormalize } from 'normalizr';
-import joi from '@hapi/joi';
+import Ajv from 'ajv';
+
+// https://stackoverflow.com/questions/36148639/webpack-not-able-to-import-images-using-express-and-angular2-in-typescript
+const swaggerSpec = require('~/swagger.yaml');
 
 /**
  * The type of Zundoko.
@@ -20,26 +23,29 @@ export type Zundoko = {
  */
 export type NormalizedZundoko = Zundoko;
 
-/**
- * The Joi schema of Zundoko.
- */
-export const zundokoJoiSchema = joi.object({
-  id: joi.string().uuid().required(),
-  saidAt: joi.string().isoDate().required(),
-  word: joi
-    .string()
-    .pattern(/(Zun)|(Doko)/)
-    .required(),
+const ajv = new Ajv({ allErrors: true }).addSchema(swaggerSpec, 'zundoko-kiyoshi');
+const doValidateZundoko = ajv.compile({
+  $ref: 'zundoko-kiyoshi#/definitions/Zundoko',
 });
+const doValidateZundokos = ajv.compile({
+  type: 'array',
+  items: {
+    $ref: 'zundoko-kiyoshi#/definitions/Zundoko',
+  },
+});
+
 /**
  * Validates a Zundoko object.
  *
  * @param obj - an object to validate.
  * @returns the validated given object.
- * @throws {ValidationError} if the given object is not a valid Zundoko object.
+ * @throws {Ajv.ValidationError} if the given object is not a valid Zundoko object.
  */
 export const validateZundoko = (obj: any) => {
-  joi.assert(obj, zundokoJoiSchema.required());
+  doValidateZundoko(obj);
+  if (doValidateZundoko.errors) {
+    throw new Ajv.ValidationError(doValidateZundoko.errors);
+  }
   return obj as Zundoko;
 };
 
@@ -48,10 +54,13 @@ export const validateZundoko = (obj: any) => {
  *
  * @param obj - an object to validate.
  * @returns the validated given object.
- * @throws {ValidationError} if the given object is not a valid Zundoko list.
+ * @throws {Ajv.ValidationError} if the given object is not a valid Zundoko list.
  */
 export const validateZundokoList = (obj: any) => {
-  joi.assert(obj, joi.array().items(zundokoJoiSchema).required());
+  doValidateZundokos(obj);
+  if (doValidateZundokos.errors) {
+    throw new Ajv.ValidationError(doValidateZundokos.errors);
+  }
   return obj as Zundoko[];
 };
 

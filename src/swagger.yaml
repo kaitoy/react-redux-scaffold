@@ -1,0 +1,54 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Zundoko Kiyoshi
+definitions:
+  User:
+    type: object
+    required:
+    - id
+    - password
+    - name
+    - dateOfBirth
+    properties:
+      id:
+        type: string
+        format: email
+      password:
+        type: string
+      name:
+        type: string
+      dateOfBirth:
+        type: string
+        format: date
+  Zundoko:
+    type: object
+    required:
+    - id
+    - saidAt
+    - word
+    properties:
+      id:
+        type: string
+        format: uuid
+      saidAt:
+        type: string
+        format: date-time
+      word:
+        type: string
+        pattern: "^(Zun)|(Doko)$"
+  Kiyoshi:
+    type: object
+    required:
+    - id
+    - saidAt
+    - madeBy
+    properties:
+      id:
+        type: string
+        format: uuid
+      saidAt:
+        type: string
+        format: date-time
+      madeBy:
+        $ref: "#/definitions/User"

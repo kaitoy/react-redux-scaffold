@@ -12,26 +12,13 @@ import { User, userSamples, userNormalizrSchemaKey } from '~/state/ducks/user/mo
 
 describe('validateKiyoshi()', () => {
   test("returns the given object if it's a valid Kiyoshi", (done) => {
-    {
-      const kiyoshi = kiyoshiSamples[0];
+    const kiyoshi = kiyoshiSamples[0];
 
-      try {
-        const validated = validateKiyoshi(kiyoshi);
-        expect(validated).toBe(kiyoshi);
-      } catch (err) {
-        done.fail(err);
-      }
-    }
-
-    {
-      const kiyoshi = { ...kiyoshiSamples[1], madeBy: kiyoshiSamples[1].madeBy.id };
-
-      try {
-        const validated = validateKiyoshi(kiyoshi);
-        expect(validated).toBe(kiyoshi);
-      } catch (err) {
-        done.fail(err);
-      }
+    try {
+      const validated = validateKiyoshi(kiyoshi);
+      expect(validated).toBe(kiyoshi);
+    } catch (err) {
+      done.fail(err);
     }
 
     done();
@@ -156,35 +143,35 @@ describe('validateKiyoshi()', () => {
       done();
     });
 
-    test('Kiyoshi.madeBy is not a string', (done) => {
-      type InvalidKiyoshi = Omit<Kiyoshi, 'madeBy'> & {
-        madeBy: number;
-      };
-      const kiyoshies = kiyoshiSamples;
-      const kiyoshi: InvalidKiyoshi = { ...kiyoshies[0], madeBy: 10 };
+    test('Kiyoshi.madeBy is not a user instance', (done) => {
+      {
+        type InvalidKiyoshi = Omit<Kiyoshi, 'madeBy'> & {
+          madeBy: string;
+        };
+        const kiyoshies = kiyoshiSamples;
+        const kiyoshi: InvalidKiyoshi = { ...kiyoshies[0], madeBy: 'kaitoy@pcap4j.org' };
 
-      try {
-        validateKiyoshi(kiyoshi);
-        done.fail('validateKiyoshi() should throw an error');
-      } catch (ex) {
-        // pass
+        try {
+          validateKiyoshi(kiyoshi);
+          done.fail('validateKiyoshi() should throw an error');
+        } catch (ex) {
+          // pass
+        }
       }
 
-      done();
-    });
+      {
+        type InvalidKiyoshi = Omit<Kiyoshi, 'madeBy'> & {
+          madeBy: number;
+        };
+        const kiyoshies = kiyoshiSamples;
+        const kiyoshi: InvalidKiyoshi = { ...kiyoshies[0], madeBy: 10 };
 
-    test('Kiyoshi.madeBy is not a valid user ID (i.e. an email address)', (done) => {
-      type InvalidKiyoshi = Omit<Kiyoshi, 'madeBy'> & {
-        madeBy: string;
-      };
-      const kiyoshies = kiyoshiSamples;
-      const kiyoshi: InvalidKiyoshi = { ...kiyoshies[0], madeBy: 'Hoge.foo' };
-
-      try {
-        validateKiyoshi(kiyoshi);
-        done.fail('validateKiyoshi() should throw an error');
-      } catch (ex) {
-        // pass
+        try {
+          validateKiyoshi(kiyoshi);
+          done.fail('validateKiyoshi() should throw an error');
+        } catch (ex) {
+          // pass
+        }
       }
 
       done();
@@ -273,7 +260,7 @@ describe('validateKiyoshiList()', () => {
       done();
     });
 
-    test('3 elements', (done) => {
+    test('multiple elements', (done) => {
       const kiyoshies = kiyoshiSamples;
 
       try {

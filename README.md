@@ -20,7 +20,7 @@
     * Material-UI Pickers 3.2.10
         * moment 2.24.0
     * react-hook-form 5.2.0
-        * @hapi/joi 17.1.1
+    * Ajv 6.12.5
     * Atomic Design
 * Style system
     * styled-components 5.0.1
