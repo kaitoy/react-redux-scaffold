@@ -46,7 +46,23 @@ const body = {
       {
         test: /\.(ts|tsx)$/,
         include: [path.resolve(__dirname, srcDir)],
-        loader: 'ts-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    useBuiltIns: 'usage',
+                    corejs: 3,
+                  },
+                ],
+              ],
+            },
+          },
+          { loader: 'ts-loader' },
+        ],
       },
       {
         test: /\.js$/,

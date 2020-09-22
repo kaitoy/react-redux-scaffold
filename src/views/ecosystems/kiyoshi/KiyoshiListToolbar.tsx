@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { UseFormMethods } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form/dist/index.ie11';
 import MainToolbar, { MainToolbarProps } from '~/views/organisms/MainToolbar';
 import { kiyoshiesBeingDeleted } from '~/state/ducks/kiyoshi/actions';
 import { isKiyoshiDataBeingDeleted } from '~/state/ducks/kiyoshi/selectors';

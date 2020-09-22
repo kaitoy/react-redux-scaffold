@@ -12,6 +12,8 @@ import AppRoutes from '~/views/AppRoutes';
 import configureStore from '~/state/store';
 import theme from '~/views/theme';
 
+Object.entries({});
+
 const root = document.getElementById('root');
 const store = configureStore();
 const Fonts = React.lazy(() => import(/* webpackPrefetch: true */ '~/views/fonts'));

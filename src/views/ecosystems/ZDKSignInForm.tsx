@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form/dist/index.ie11';
 import SignInForm, { SignInFormData } from '~/views/organisms/SignInForm';
 import { getUsers, isUserDataReady } from '~/state/ducks/user/selectors';
 import { userDataNotReady, usersBeingFetched } from '~/state/ducks/user/actions';

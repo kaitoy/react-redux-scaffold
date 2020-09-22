@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useCallback, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form/dist/index.ie11';
 import KiyoshiFormToolbar from '~/views/ecosystems/kiyoshi/KiyoshiFormToolbar';
 import { KiyoshiFormData } from '~/views/organisms/kiyoshi/KiyoshiFormContents';
 import KiyoshiForm from '~/views/ecosystems/kiyoshi/KiyoshiForm';

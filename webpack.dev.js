@@ -19,6 +19,7 @@ module.exports = webpackMerge(webpackCommon.body, {
     proxy: {
       '/api': 'http://localhost:8080',
     },
+    disableHostCheck: true,
   },
   plugins: [new HardSourceWebpackPlugin()],
 });

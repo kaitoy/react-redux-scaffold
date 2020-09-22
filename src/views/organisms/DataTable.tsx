@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-import { UseFormMethods } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form/dist/index.ie11';
 import InfoButton from '~/views/atoms/buttons/InfoButton';
 import SpacingCircularProgress from '~/views/atoms/SpacingCircularProgress';
 
