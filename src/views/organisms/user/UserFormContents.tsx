@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { UseFormMethods } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form/dist/index.ie11';
 import Grid from '@material-ui/core/Grid';
 import { User } from '~/state/ducks/user/models';
 import TextField from '~/views/atoms/inputs/TextField';

@@ -37,7 +37,7 @@ const SignInForm: FunctionComponent<SignInFormProps> = ({
   );
 
   return (
-    <CenteringGridContainer direction="column" alignItems="stretch" spacing={2}>
+    <CenteringGridContainer direction="column" alignItems="stretch" spacing={0}>
       <Grid item>
         <Typography align="center" color="primary" noWrap variant="h2">
           Zundoko Kiyoshi

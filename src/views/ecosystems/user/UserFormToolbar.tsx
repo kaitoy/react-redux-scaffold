@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { UseFormMethods } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form/dist/index.ie11';
 import MainToolbar, { MainToolbarProps } from '~/views/organisms/MainToolbar';
 import { usersBeingDeleted } from '~/state/ducks/user/actions';
 import { isZundokoDataBeingDeleted } from '~/state/ducks/zundoko/selectors';

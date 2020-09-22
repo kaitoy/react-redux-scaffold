@@ -45,7 +45,7 @@ const Home: FunctionComponent = () => {
 
       <ZDKHeader marginLeft={sidebarWidth} />
 
-      <main>
+      <div>
         <ZDKMainContainer marginLeft={sidebarWidth}>
           <Switch>
             <Route exact sensitive path={`${path}`}>
@@ -77,7 +77,7 @@ const Home: FunctionComponent = () => {
             </Route>
           </Switch>
         </ZDKMainContainer>
-      </main>
+      </div>
 
       <ZDKErrorDialog />
     </>

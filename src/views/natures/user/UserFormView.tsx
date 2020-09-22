@@ -1,7 +1,7 @@
 import path from 'path';
 import React, { FunctionComponent, useState, useCallback } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form/dist/index.ie11';
 import UserFormToolbar from '~/views/ecosystems/user/UserFormToolbar';
 import { User } from '~/state/ducks/user/models';
 import NewUserFormToolbar from '~/views/ecosystems/user/NewUserFormToolbar';

@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form/dist/index.ie11';
 import ZundokoListToolbar from '~/views/ecosystems/zundoko/ZundokoListToolbar';
 import ZundokoDataTable from '~/views/ecosystems/zundoko/ZundokoDataTable';
 import { DataTableFormData } from '~/views/organisms/DataTable';

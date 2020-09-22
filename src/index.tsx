@@ -12,6 +12,11 @@ import AppRoutes from '~/views/AppRoutes';
 import configureStore from '~/state/store';
 import theme from '~/views/theme';
 
+// A trick to tell babel to add a polyfill for Object.entries,
+// which is needed because some npm packages uses the method
+// and IE11 doesn't support it.
+Object.entries({});
+
 const root = document.getElementById('root');
 const store = configureStore();
 const Fonts = React.lazy(() => import(/* webpackPrefetch: true */ '~/views/fonts'));

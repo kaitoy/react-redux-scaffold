@@ -1,6 +1,9 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { enableES5 } from 'immer';
 import { reducers, rootSaga } from './ducks';
+
+enableES5();
 
 const rootReducer = combineReducers(reducers);
 const sagaMiddleware = createSagaMiddleware();

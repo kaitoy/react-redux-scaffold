@@ -8,7 +8,7 @@
 * State management
     * Redux 4.0.5
     * react-redux 7.1.3
-    * immer 5.3.6
+    * immer 7.0.9
     * reselect 4.0.0
     * normalizr 3.6.0
     * redux-saga 1.1.3
