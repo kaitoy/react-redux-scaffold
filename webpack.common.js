@@ -39,11 +39,6 @@ const body = {
         loader: 'yaml-loader',
       },
       {
-        test: /\.(js|jsx)$/,
-        include: [path.resolve(__dirname, srcDir)],
-        loader: 'babel-loader',
-      },
-      {
         test: /\.(ts|tsx)$/,
         include: [path.resolve(__dirname, srcDir)],
         use: [
