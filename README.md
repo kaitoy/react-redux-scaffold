@@ -19,7 +19,7 @@
     * Material-UI 4.9.2
     * Material-UI Pickers 3.2.10
         * moment 2.24.0
-    * react-hook-form 5.2.0
+    * react-hook-form 6.8.4
     * Ajv 6.12.5
     * Atomic Design
 * Style system

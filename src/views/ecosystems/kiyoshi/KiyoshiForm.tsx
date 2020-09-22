@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { FormContextValues } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { StoreState } from '~/state/ducks';
 import { isKiyoshiDataReady, getKiyoshi } from '~/state/ducks/kiyoshi/selectors';
@@ -21,7 +21,7 @@ export type KiyoshiFormProps = Readonly<{
   /**
    * A register method for {@link KiyoshiFormData}.
    */
-  register: FormContextValues<KiyoshiFormData>['register'];
+  register: UseFormMethods<KiyoshiFormData>['register'];
 
   /**
    * A callback to know whether the data table is ready.

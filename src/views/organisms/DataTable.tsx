@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-import { FormContextValues } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form';
 import InfoButton from '~/views/atoms/buttons/InfoButton';
 import SpacingCircularProgress from '~/views/atoms/SpacingCircularProgress';
 
@@ -34,7 +34,7 @@ export type DataTableProps = Readonly<{
    * A register method of react-hook-form.
    * This will be passed to the input "selectedRows" that holds an array of selected rows' keys.
    */
-  register: FormContextValues<DataTableFormData>['register'];
+  register: UseFormMethods<DataTableFormData>['register'];
 
   /** The event handler called when an info button on a row is clicked. */
   onInfoButtonClick: (key: string) => void;

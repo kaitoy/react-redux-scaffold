@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { FormContextValues } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form';
 import Grid from '@material-ui/core/Grid';
 import { User } from '~/state/ducks/user/models';
 import TextField from '~/views/atoms/inputs/TextField';
@@ -16,7 +16,7 @@ export type UserFormContentsProps = Readonly<{
   /**
    * A register method for {@link UserFormData}.
    */
-  register: FormContextValues<UserFormData>['register'];
+  register: UseFormMethods<UserFormData>['register'];
 
   /** An entity to show. if omitted, shows a blank form. */
   entity?: User;

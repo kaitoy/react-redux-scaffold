@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FormContextValues } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form';
 import MainToolbar, { MainToolbarProps } from '~/views/organisms/MainToolbar';
 import { usersBeingDeleted } from '~/state/ducks/user/actions';
 import { isZundokoDataBeingDeleted } from '~/state/ducks/zundoko/selectors';
@@ -16,7 +16,7 @@ type UserFormToolbarProps = Readonly<
      * The handleSubmit method of react-hook-form for {@link DataTableFormData}
      * that is used to create the event handler for the delete button.
      */
-    handleSubmit: FormContextValues<UserFormData>['handleSubmit'];
+    handleSubmit: UseFormMethods<UserFormData>['handleSubmit'];
 
     /** A callback called when the entity the form shows is deleted. */
     handleDeletionCompleted: () => void;

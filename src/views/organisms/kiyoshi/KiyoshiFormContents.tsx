@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { FormContextValues } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form';
 import Grid from '@material-ui/core/Grid';
 import { Kiyoshi } from '~/state/ducks/kiyoshi/models';
 import TextField from '~/views/atoms/inputs/TextField';
@@ -14,7 +14,7 @@ export type KiyoshiFormContentsProps = Readonly<{
   /**
    * A register method for {@link KiyoshiFormData}.
    */
-  register: FormContextValues<KiyoshiFormData>['register'];
+  register: UseFormMethods<KiyoshiFormData>['register'];
 
   /** An entity to show. */
   entity: Kiyoshi;

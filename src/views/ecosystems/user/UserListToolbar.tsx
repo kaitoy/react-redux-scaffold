@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FormContextValues } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form';
 import MainToolbar, { MainToolbarProps } from '~/views/organisms/MainToolbar';
 import { usersBeingDeleted } from '~/state/ducks/user/actions';
 import { isUserDataBeingDeleted } from '~/state/ducks/user/selectors';
@@ -16,7 +16,7 @@ type UserListToolbarProps = Readonly<
      * The handleSubmit method of react-hook-form for {@link DataTableFormData}
      * that is used to create the event handler for the delete button.
      */
-    handleSubmit: FormContextValues<DataTableFormData>['handleSubmit'];
+    handleSubmit: UseFormMethods<DataTableFormData>['handleSubmit'];
 
     /**
      * A method to open a blank form to create a new user.

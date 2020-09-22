@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { FormContextValues } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { StoreState, noop } from '~/state/ducks';
 import { isUserDataReady, getUser } from '~/state/ducks/user/selectors';
@@ -19,7 +19,7 @@ export type UserFormProps = Readonly<{
   /**
    * A register method for {@link UserFormData}.
    */
-  register: FormContextValues<UserFormData>['register'];
+  register: UseFormMethods<UserFormData>['register'];
 
   /**
    * A callback to know whether the data table is ready.

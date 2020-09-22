@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FormContextValues } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form';
 import MainToolbar, { MainToolbarProps } from '~/views/organisms/MainToolbar';
 import { kiyoshiesBeingDeleted } from '~/state/ducks/kiyoshi/actions';
 import { isKiyoshiDataBeingDeleted } from '~/state/ducks/kiyoshi/selectors';
@@ -16,7 +16,7 @@ type KiyoshiListToolbarProps = Readonly<
      * The handleSubmit method of react-hook-form for {@link DataTableFormData}
      * that is used to create the event handler for the delete button.
      */
-    handleSubmit: FormContextValues<DataTableFormData>['handleSubmit'];
+    handleSubmit: UseFormMethods<DataTableFormData>['handleSubmit'];
   }
 >;
 

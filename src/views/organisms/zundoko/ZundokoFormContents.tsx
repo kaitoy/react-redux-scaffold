@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { FormContextValues } from 'react-hook-form';
+import { UseFormMethods } from 'react-hook-form';
 import Grid from '@material-ui/core/Grid';
 import { Zundoko } from '~/state/ducks/zundoko/models';
 import TextField from '~/views/atoms/inputs/TextField';
@@ -14,7 +14,7 @@ export type ZundokoFormContentsProps = Readonly<{
   /**
    * A register method for {@link ZundokoFormData}.
    */
-  register: FormContextValues<ZundokoFormData>['register'];
+  register: UseFormMethods<ZundokoFormData>['register'];
 
   /** An entity to show. */
   entity: Zundoko;
